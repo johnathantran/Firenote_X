@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="src/css/firenote.css" media="all" rel="stylesheet">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  
+  <script src="src/js/jquery-3.5.1.min.js"></script>
+  <script type="module" src="/src/js/background.js"></script>
+  <script src="src/js/app.js"></script>
+
+</head>
+
+<body>
+<div id="container">
+
+  <div id="menu">
+    <div><button class="collapsible" id="toggleDarkMode">dark mode</button></div>
+    <div><button class="clear" id="clearAll">clear all</button></div>
+    <div><button class="clear" id="dockAll">dock all</button></div>
+    <div><button class="clear" id="myBtn">quick guide +</button></div>
+    <div>
+      <button class="collapsible">contact +</button>
+      <div class="content"> <p>As a first time developer, your support
+        is incredibly important to me to improve and build upon this app.
+      Feel free to contact me with your ideas, feedback, and bug reports: </p>
+      <p><img id="email" src="src/images/email.png"><a href = "mailto: firenoteapp@gmail.com"> firenoteapp@gmail.com</a></p>
+      <p><img id="star" src="src/images/star.png"><a href="https://chrome.google.com/webstore/detail/firenote-notes-todo-lists/fffpcpifbaimmmmclpmfhjgbiokbhnea?hl=en" target="_blank"> Leave a Review</a></p>
+      <p><img id="github" src="src/images/web.png"><a href="https://sites.google.com/view/firenote" target="_blank"> Firenote Home</a></p>
+      <p> I will do my best to respond within 24 hours. If you enjoy this app, you can support me by buying me a coffee with the link below :) </p>
+      <p>I'd like to keep this extension free on the Chrome store and develop more features in the future.
+        Thank you! </p>
+      <p id="signature">- j. tran </p></div>
+    </div>
+  </div>
+
+  <div class="menuIcon" id="hideMenu">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+  </div>
+
+  <div id="myNotes"><p id="dockTitle">Notes Dock</p>
+    
+    <p class="dockSubtitle"> folders </p>
+    <!--
+    <span class="circle" id="Orange"></span>
+    <span class="circle" id="Pink"></span>
+    <span class="circle" id="Blue"></span>
+    <span class="circle" id="Red"></span>
+    <span class="circle" id="Green"></span>
+    -->
+    <hr>
+    <p id="hideTip"> right-click to rename folder or hide notes.</p>
+    <!-- Collapsible Folders in Notes Dock -->
+    <div class="folder folderCollapsible" id="folderOrange">
+      <img class="foldersrc/images" src="src/images/Orange.png">
+      <input class="folderHeader" maxlength="30" readOnly="true" id="inputOrange" value="Orange">
+      <div class="folderExpand">+</div>
+    </div>
+    <div class="folderContent" id="contentOrange"></div>
+
+    <div class="folder folderCollapsible" id="folderPink">
+      <img class="foldersrc/images" src="src/images/Pink.png">
+      <input class="folderHeader" maxlength="30" readOnly="true" id="inputPink" value="Pink">
+      <div class="folderExpand">+</div>
+    </div>
+    <div class="folderContent" id="contentPink"></div>
+
+    <div class="folder folderCollapsible" id="folderBlue">
+      <img class="foldersrc/images" src="src/images/Blue.png">
+      <input class="folderHeader" maxlength="30" readOnly="true" id="inputBlue" value="Blue">
+      <div class="folderExpand">+</div>
+    </div>
+    <div class="folderContent" id="contentBlue"></div>
+
+    <div class="folder folderCollapsible" id="folderGreen">
+      <img class="foldersrc/images" src="src/images/Green.png">
+      <input class="folderHeader" maxlength="30" readOnly="true" id="inputGreen" value="Green">
+      <div class="folderExpand">+</div>
+    </div>
+    <div class="folderContent" id="contentGreen"></div>
+    
+
+    <p class="dockSubtitle"> notes </p><hr>
+  </div><br>
+  <div id="intro">
+    <div id="centerTitle"><h1 id="fire">fire</h1><h1>note</h1></div>
+    <p> your customizable workspace for virtual sticky notes and to-do lists.</p>
+    <hr><br>
+    <button id="addNote" class="blueBtn">+ Add New List</button>
+    <button id="addMemo" class="blueBtn">+ Add New Memo</button>
+    <p id="pending"> edit pending save. </p>
+    <p id="darkEnabled">disabled</p>
+  </div>
+  <div id="footer">
+    <a href="https://www.buymeacoffee.com/jtran" target="_blank"><img id="bmc" src="src/images/bmc-button.png"></a>
+  </div>
+  
+
+  <!-- The Modal -->
+  <div id="myModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h1>a quick guide</h1>
+      <div><button class="blueBtn" id="guideBtn1"> next: folder guide </button></div>  
+      <hr>
+      
+      <h3> You can add "List" and "Memo" notes to your workspace. Both will sync to your Google account so you can access your notes anywhere.</h3>
+      <p> "List" notes allow you to add, remove, and cross out items in a todo-list format. "Memo" notes allow you to write and save short paragraph-style notes.
+        You can drag notes across the screen by double-clicking the note headers.
+      </p>
+      
+      <img id="guide" src="src/images/help.png">
+
+      <table class="center">
+        <tr>
+          <td><strong>1. Edit Title </strong></td>
+          <td>Click to edit title. Click again or hit Enter to save changes.</td>
+        </tr>
+        <tr>
+          <td style="width:18%"><strong>2. Minimize </strong></td>
+          <td style="width:82%">Minimize note. To completely hide the note, click on the note title in the Notes Dock.</td>
+        </tr>
+        <tr>
+          <td><strong>3. Delete Note </strong></td>
+          <td>Delete note. Careful - this cannot be undone.</td>
+        </tr>
+        <tr>
+          <td><strong>4. Add Item </strong></td>
+          <td>Type in your input and click the "+" button or hit Enter to add an item to the list.
+            If you want to add multiple lines in a single list item, you can edit the item (see #6) after it has been added.
+          </td>
+        </tr>
+        <tr>
+          <td><strong>5. Undo Remove </strong></td>
+          <td>Recover the most recent item deleted from the list.</td>
+        </tr>
+        <tr>
+          <td><strong>6. Edit Item </strong></td>
+          <td>Left-click on any item on the list to edit its contents. Click the "Save" icon that appears to save your edit.</td>
+        </tr>
+        <tr>
+          <td><strong>7. Prioritize </strong></td>
+          <td>Right click a list item to open this menu. Click Prioritize to highlight a list item.</td>
+        </tr>
+        <tr>
+          <td><strong>8. Move Item </strong></td>
+          <td>Right click a list item to open this menu. Move the item up or down the list.</td>
+        </tr>
+        <tr>
+          <td><strong>9. Cross Off </strong></td>
+          <td>Cross off an item from the list.</td>
+        </tr>
+        <tr>
+          <td><strong>10. Remove Item </strong></td>
+          <td>Remove an item from the list. This can be undone with your most recent removal. </td>
+        </tr>
+        <tr>
+          <td><strong>11. Save Memo </strong></td>
+          <td>Save a memo-style note. Remember to do this every time you make an edit.</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+
+  <div id="myModal2" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h1>folder guide</h1>
+      <div><button class="blueBtn" id="guideBtn2"> prev: quick guide </button></div>   
+      <hr>
+      <h3> Folders are a way to easily categorize your notes. You can add notes to different colored folders using 2 methods: </h3>
+      <p>1. Right-clicking the header of the note itself.</p>
+      <p>2. Right-clicking the note title from the Notes Dock.</p>
+      <p> Notes without folders are yellow by default.</p>
+  
+      <img class="folderExamples" src="src/images/folder_ex.png"><br>
+      <h3>Right-clicking the folder itself in the Notes Dock will bring up the following menu.</h3>
+      <img class="folderExamples" src="src/images/folder_menu_ex.png">
+      <table class="center">
+        <tr>
+          <td><strong>1. Hide Folder </strong></td>
+          <td>Hide all notes in the folder. Click again to reveal.</td>
+        </tr>
+        <tr>
+          <td style="width:18%"><strong>2. Rename Folder </strong></td>
+          <td style="width:82%">Rename the folder from its default color. Press Enter to save the new name.</td>
+        </tr>
+        <tr>
+          <td><strong>3. Delete Folder </strong></td>
+          <td>Deletes all notes in the folder. Careful - this cannot be undone.</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+
+  <div id="messages">
+    <div id="msgBtn"><img id="messageImg" src="src/images/message.png"></div>
+    <p id="releaseNotes"> 2.1.0 release notes </p>
+    <div id="msgText">
+      <strong>Version 2.1.0 is released! The changes: </strong>
+      <ol>
+        <li><strong>A colored folder system has been implemented.</strong></li>
+        <li>Right click a note in the Notes Dock to classify it to one of 4 available folders.
+          Please refer to the quick guide for details on the new feature.
+        </li>
+      </ol>
+      <p> As always, please let me know of any issues and I will resolve them as quickly as possible (firenoteapp@gmail.com).
+      Thank you and I am here for you to make this app a powerful productivity tool for your daily life. Please leave a review if you enjoy this app! </p>
+  </div>
+</div>
+
+<!-- Context Menus -->
+<div class="contextMenu">
+  <ul class="menu-options">
+    <li class="menu-option priority">Prioritize</li>
+    <li class="menu-option moveup">Move Up</li>
+    <li class="menu-option movedown">Move Down</li>
+  </ul>
+</div>
+
+<div class="folderAddMenu">
+  <p id="hideTip"> Move to folder: </p>
+  <ul class="menu-options">
+    <li class="menu-option" id="moveOrange"><span class="circle" id="Orange"></span><p class="colorMenuOption" id="optionOrange">Orange</p></li>
+    <li class="menu-option" id="movePink"><span class="circle" id="Pink"></span><p class="colorMenuOption" id="optionPink">Pink</p></li>
+    <li class="menu-option" id="moveBlue"><span class="circle" id="Blue"></span><p class="colorMenuOption" id="optionBlue">Blue</p></li>
+    <li class="menu-option" id="moveGreen"><span class="circle" id="Green"></span><p class="colorMenuOption" id="optionGreen">Green</p></li>
+    <li class="menu-option" id="moveYellow"><span class="circle" id="Yellow"></span><p class="colorMenuOption" id="optionYellow">No Folder</p></li>
+  </ul>
+</div>
+
+<div class="folderDelMenu">
+  <ul class="menu-options">
+    <li class="menu-option hideFolder">Hide Folder</li>
+    <li class="menu-option renameFolder">Rename Folder</li>
+    <li class="menu-option deleteFolder">Delete Folder</li>
+  </ul>
+</div>
+
+</body>
+</html>
