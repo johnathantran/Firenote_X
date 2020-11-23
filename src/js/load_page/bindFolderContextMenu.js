@@ -1,3 +1,5 @@
+import { createContextMenu } from './submodules/createContextMenu.js'
+
 // context menu for todo list items
 export function createTodoListContextMenu() {
     
@@ -18,6 +20,7 @@ export function createTodoListContextMenu() {
         prioritize(move_select, "prioritize");
     });
 }
+
 
 export function createFolderContextMenu() {
 
