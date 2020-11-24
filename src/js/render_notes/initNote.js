@@ -1,5 +1,7 @@
-
-import { renderExistingNotes } from "./renderExistingNotes.js";
+import { bindNoteEventsOnLoad } from "./loadExistingNotes/onload_bindNoteEvents.js"
+import { bindNoteEvents } from "./createNewNote/bindNoteEvents.js"
+import { renderExistingNotes } from './loadExistingNotes/renderExistingNotes.js'
+import { createNewNote } from './createNewNote/createNewNote.js'
 
 // creates notes when the page is loaded (note exists), or when the Add Note button is clicked (note does not exist yet)
 export function initNote(noteTemplate) {
@@ -31,20 +33,15 @@ export function initNote(noteTemplate) {
         note.innerHTML += '<img class="undo" id="undo' + idx + '" src="/src/images/undo.png">';
         note.innerHTML += '<div class="todoLists" id="todos' + idx + '"></div>';
       }
-  
-      // IF LOADING EXISTING NOTES
+
       if (noteTemplate.exists == true) {
-
         renderExistingNotes(note,result,idx);
-
+        bindNoteEventsOnLoad(note);
       }
-      // ****************************************************************
-      // IF ADDING A NEW NOTE
-      // ****************************************************************
       else {
-        
-        return(noteTemplate, note);
-     
+        createNewNote(noteTemplate, note);
+        bindNoteEvents(note);
       } 
     });
-  };
+};
+

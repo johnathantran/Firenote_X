@@ -33,13 +33,15 @@ export function bindDockContextMenu(move_select) {
     for (var i = 0; i < folderIDs.length; i++) {
         var folder = document.getElementById(folderIDs[i]);
 
+        console.log(folderIDs[i]);
+
         folder.addEventListener('click',function() {
             moveToFolder(folderIDs[i].replace('move',''), moveSelect);
         });
     }
 }
 
-import { addNewNote } from '../load_notes/addNewNote.js'
+import { addNewNote } from '../render_notes/createNewNote/addNewNote.js'
 // add event listeners to all right side menu item buttons
 export function bindMenuItems() {
 

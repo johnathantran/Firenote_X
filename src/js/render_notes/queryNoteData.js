@@ -1,7 +1,6 @@
 import { initNote } from './initNote.js'
-import { getAllExistingNoteIndexes } from './submodules/getAllExistingNoteIndexes.js'
 
-export function loadNotes() {
+export function queryNoteData() {
 
     // check if user has enabled dark mode
     chrome.storage.sync.get(['firenote_dark'], function(result) {
@@ -21,7 +20,7 @@ export function loadNotes() {
       try {
         chrome.storage.sync.get(all_idx, function(noteObj) {
   
-          for (var idx=1; idx <= max_notes; idx++) { // 20 for now
+          for (var idx=1; idx <= max_notes; idx++) {
             idx = idx.toString();
             
             // check if a note exists with the given key/index

@@ -1,10 +1,10 @@
 // load page imports
 
 // adding event listeners
-import { bindCollapsible, bindDockContextMenu, bindMenuItems } from './load_page/bindUI.js'
-import { createModals } from './load_page/createModals.js'
-import { displayDevMsg } from './load_page/displayDevMsg.js'
-import { createTodoListContextMenu, createFolderContextMenu } from './load_page/bindFolderContextMenu.js'
+import { bindCollapsible, bindDockContextMenu, bindMenuItems } from './load_page_UI/bindUI.js'
+import { createModals } from './load_page_UI/createModals.js'
+import { displayDevMsg } from './load_page_UI/displayDevMsg.js'
+import { createTodoListContextMenu, createFolderContextMenu } from './load_page_UI/bindFolderContextMenu.js'
 
 $(document).ready(function() {
     // bind collapsible UI menus
@@ -34,5 +34,5 @@ $(document).ready(function() {
 //bindHeaderContextMenu(note);
 
 // load previously created notes on the page
-import { loadNotes } from './load_notes/loadNotes.js'
-loadNotes();
+import { queryNoteData } from './render_notes/queryNoteData.js'
+queryNoteData();
