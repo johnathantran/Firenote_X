@@ -1,4 +1,5 @@
 import { initNote } from './initNote.js'
+import { getAllExistingNoteIndexes } from './submodules/getAllExistingNoteIndexes.js'
 
 export function loadNotes() {
 

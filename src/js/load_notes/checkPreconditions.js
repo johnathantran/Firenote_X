@@ -81,6 +81,7 @@ export function checkPreconditions(memo) {
           isMemo: memo,
         };
         
+        console.log(noteTemplate);
         return noteTemplate;
         
       });

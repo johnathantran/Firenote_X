@@ -15,7 +15,7 @@ export function createNewNote(noteTemplate, note) {
     'posTop': note.style.top, 
     'posLeft': note.style.left,
     'hidden': false,
-    'isMemo': isMemo,
+    'isMemo': noteTemplate.isMemo,
     'memo': null,
     };
     console.log("Creating item: " + idx);

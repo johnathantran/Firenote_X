@@ -39,7 +39,7 @@ export function bindDockContextMenu(move_select) {
     }
 }
 
-import { checkPreconditions } from '../load_notes/checkPreconditions.js'
+import { addNewNote } from '../load_notes/addNewNote.js'
 // add event listeners to all right side menu item buttons
 export function bindMenuItems() {
 
@@ -63,11 +63,11 @@ export function bindMenuItems() {
         addNote: () => {
             
             var el = document.getElementById('addNote');
-            el.addEventListener('click', function() { checkPreconditions(false) });
+            el.addEventListener('click', function() { addNewNote(false) });
         },
         addMemo: () => {
             var el = document.getElementById('addMemo');
-            el.addEventListener('click', function() { checkPreconditions(true) });
+            el.addEventListener('click', function() { addNewNote(true) });
         },
         addFolderButtons: () => {
             var el = document.getElementsByClassName('circle');
