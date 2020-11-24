@@ -1,7 +1,6 @@
-import { bindNoteEventsOnLoad } from "./loadExistingNotes/onload_bindNoteEvents.js"
-import { bindNoteEvents } from "./createNewNote/bindNoteEvents.js"
-import { renderExistingNotes } from './loadExistingNotes/renderExistingNotes.js'
-import { createNewNote } from './createNewNote/createNewNote.js'
+import { bindNoteEvents } from "./bindNoteEvents.js"
+import { renderExistingNotes } from './renderExistingNotes.js'
+import { createNewNote } from './createNewNote.js'
 
 // creates notes when the page is loaded (note exists), or when the Add Note button is clicked (note does not exist yet)
 export function initNote(noteTemplate) {
@@ -36,12 +35,36 @@ export function initNote(noteTemplate) {
 
       if (noteTemplate.exists == true) {
         renderExistingNotes(note,result,idx);
-        bindNoteEventsOnLoad(note);
+        bindNoteEventsOnLoad();
       }
       else {
         createNewNote(noteTemplate, note);
+        console.log("binding in init")
         bindNoteEvents(note);
       } 
     });
 };
 
+
+// adds event listeners when page loads
+attachedListeners = false;
+function bindNoteEventsOnLoad() {
+  
+  chrome.storage.sync.get(['haveListeners'], function(result) {
+    
+    if (attachedListeners == true) { return; }
+
+    var all_notes = (document.querySelectorAll('.drag'));
+    for (var i=0; i < all_notes.length; i++) {
+      bindNoteEvents(all_notes[i]);
+    }
+    console.log("Adding listeners...");
+    storeSync('haveListeners',true);
+    attachedListeners = true;
+    /*
+    chrome.browserAction.onClicked.addListener(function() {
+      chrome.tabs.create({'url':"chrome://newtab"});
+    });
+    */
+  });
+}

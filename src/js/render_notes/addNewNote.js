@@ -1,5 +1,5 @@
 // workflow for creating a new list or a new memo
-import { initNote } from '../initNote.js'
+import { initNote } from './initNote.js'
 
 export function addNewNote(isMemo) {
 

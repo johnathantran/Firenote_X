@@ -1,3 +1,49 @@
+export function bindMemoEvents(note) {
+
+  var memoText = note.childNodes[4];
+  var memoBtn = note.childNodes[6];
+
+  var memoEvents = {
+
+      autosizeMemoInput: () => {
+        var box_height;
+        memoText.addEventListener('input', function (event) {
+          box_height = autoExpand(event.target);
+        });
+      },
+
+      saveMemo: () => {
+        memoBtn.addEventListener('click', function() {
+          console.log("Memo saved");
+          saveMemo(getIdx(note), box_height);
+        });
+      },
+
+      editPendingSave: () => {
+        memoText.addEventListener('click', function() {
+        if (memoText.value.length < 600) {
+          document.getElementById('pending').textContent = "edit pending save.";
+          document.getElementById('pending').style.opacity = "1";
+        }
+        memoBtn.style.display = "inline-block"; // show the save button
+        });
+      },
+
+      countCharactersRemaining: () => {
+        memoText.addEventListener('keyup', countCharacters, false);
+      },
+  };
+  
+  memoEvents.autosizeMemoInput();
+  memoEvents.saveMemo();
+  memoEvents.editPendingSave();
+  memoEvents.countCharactersRemaining();
+};
+
+
+
+
+
 export function bindNoteEvents(note) {
 
     var idx = getIdx(note);
@@ -5,6 +51,10 @@ export function bindNoteEvents(note) {
     var editHeaderBtn = note.childNodes[1];
     var minBtn = note.childNodes[2];
     var delBtn = note.childNodes[3];
+    
+    var noteObj = {
+      header: note.childNodes[0],
+    }
     
     // add context menu when you right click on the note header to move to folder
     var setPosition2 = createContextMenu(document.querySelector(".folderAddMenu"));
@@ -24,30 +74,10 @@ export function bindNoteEvents(note) {
   
     // if it's a memo style note
     if (note.childNodes[4].nodeName == 'TEXTAREA') {
-      var memoText = note.childNodes[4];
-      var memoBtn = note.childNodes[6];
-  
-      // event listener for dynamic textarea sizing
-      var box_height;
-      memoText.addEventListener('input', function (event) {
-        box_height = autoExpand(event.target);
-      });
-  
-      memoBtn.addEventListener('click', function() {
-        console.log("Memo saved");
-        idx = getIdx(note);
-        saveMemo(idx, box_height);
-      });
       
-      memoText.addEventListener('click', function() {
-        if (memoText.value.length < 600) {
-          document.getElementById('pending').textContent = "edit pending save.";
-          document.getElementById('pending').style.opacity = "1";
-        }
-        memoBtn.style.display = "inline-block"; // show the save button
-      });
-      memoText.addEventListener('keyup', countCharacters, false);
-  
+      console.log("binding memo events");
+      bindMemoEvents(note);
+
     }
     else { // if it's a list style note
       var taskInput = note.childNodes[4];

@@ -29,10 +29,6 @@ $(document).ready(function() {
     console.log("end load page");
 });
 
-// adding note event listeners
-//import { bindHeaderContextMenu } from './load_notes/bindNoteEvents.js'
-//bindHeaderContextMenu(note);
-
-// load previously created notes on the page
+// load previously created notes on the page and bind note events
 import { queryNoteData } from './render_notes/queryNoteData.js'
 queryNoteData();

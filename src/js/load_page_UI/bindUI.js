@@ -41,7 +41,7 @@ export function bindDockContextMenu(move_select) {
     }
 }
 
-import { addNewNote } from '../render_notes/createNewNote/addNewNote.js'
+import { addNewNote } from '../render_notes/addNewNote.js'
 // add event listeners to all right side menu item buttons
 export function bindMenuItems() {
 
@@ -62,8 +62,7 @@ export function bindMenuItems() {
             var el = document.getElementById('clearAll');
             el.addEventListener('click', function() { dockAll() });
         },
-        addNote: () => {
-            
+        addNote: () => {    
             var el = document.getElementById('addNote');
             el.addEventListener('click', function() { addNewNote(false) });
         },
