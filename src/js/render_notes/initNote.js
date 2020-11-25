@@ -2,33 +2,41 @@ import { bindNoteEvents } from "./bindNoteEvents.js"
 import { renderExistingNotes } from './renderExistingNotes.js'
 import { createNewNote } from './createNewNote.js'
 
-class NoteClass {
 
-  constructor(noteContainer) {
+class TodoClass {
+
+  constructor(noteContainer, storageQuery, idx) {
+ 
     this.note = noteContainer;
+    this.storageQuery = storageQuery;
+    this.idx = idx;
+
     this.header = noteContainer.childNodes[0];
     this.editHeaderBtn = noteContainer.childNodes[1];
     this.minBtn = noteContainer.childNodes[2];
     this.delBtn = noteContainer.childNodes[3];
-  }
-
-}
-
-class TodoClass extends NoteClass {
-
-  constructor(noteContainer) {
-    super(noteContainer);
     this.taskInput = noteContainer.childNodes[4];
     this.addBtn = noteContainer.childNodes[5];
     this.undoBtn = noteContainer.childNodes[6];
+    this.todoList = noteContainer.childNodes[7];
   }
 }
 
-class MemoClass extends NoteClass {
+class MemoClass {
 
-  constructor(noteContainer) {
-    super(noteContainer);
+  constructor(noteContainer, storageQuery, idx) {
+ 
+    this.note = noteContainer;
+    this.storageQuery = storageQuery;
+    this.idx = idx;
+
+    this.header = noteContainer.childNodes[0];
+    this.editHeaderBtn = noteContainer.childNodes[1];
+    this.minBtn = noteContainer.childNodes[2];
+    this.delBtn = noteContainer.childNodes[3];
     this.memoInput = noteContainer.childNodes[4];
+    this.characterCount = noteContainer.childNodes[5];
+    this.memoBtn = noteContainer.childNodes[6];
   }
 }
 
@@ -54,18 +62,20 @@ export function initNote(noteTemplate) {
         noteContainer.innerHTML += '<textarea placeholder="Type a memo here..." maxlength="600" class="memo" rows="8" spellcheck="false" id="memo' + idx +'" style="display:inline-block;"></textarea>';
         noteContainer.innerHTML += '<p class="memoCounter" id="memoCounter' + idx + '">Max 600 characters</p>';
         noteContainer.innerHTML += '<button class="saveMemo">Save Memo</button>';
-        var note = new MemoClass(noteContainer);
+        console.log(result);
+        var note = new MemoClass(noteContainer, result, idx);
+        console.log(note.header);
+        console.log(this.minBtn);
       }
       else {
         noteContainer.innerHTML += '<input maxlength="250" class="task" placeholder="Add an item" id="task' + idx + '" style="display:inline-block;"><img src="/src/images/add.png" id="add" class="add">';
         noteContainer.innerHTML += '<img class="undo" id="undo' + idx + '" src="/src/images/undo.png">';
         noteContainer.innerHTML += '<div class="todoLists" id="todos' + idx + '"></div>';
-        var note = new TodoClass(noteContainer);
+        var note = new TodoClass(noteContainer, result, idx);
       }
 
-
       if (noteTemplate.exists == true) {
-        renderExistingNotes(noteContainer,result,idx);
+        renderExistingNotes(note);
         bindNoteEventsOnLoad();
       }
       else {
