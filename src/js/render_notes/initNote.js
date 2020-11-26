@@ -114,36 +114,12 @@ function bindNoteEventsOnLoad() {
       storeSync('haveListeners',true);
       attachedListeners = true;
     });
-    
-
-
-
-
-
-
-
-
-
-
-    /*
-    for (var i=0; i < all_notes.length; i++) {
-
-      var textarea = document.getElementById("memo" + (i+1).toString());
-      console.log(all_notes[i]);
-      console.log(all_notes[i].contains(document.getElementById(textarea)));
-      var note = new NoteClass(all_notes[i], null, i, null);
-      console.log(note);
-      console.log(note.isMemo);
-      bindNoteEvents(all_notes[i]);
-    }
-    console.log("Adding listeners...");
-    storeSync('haveListeners',true);
-    attachedListeners = true;
-    */
+  
     /*
     chrome.browserAction.onClicked.addListener(function() {
       chrome.tabs.create({'url':"chrome://newtab"});
     });
     */
+   
   });
 }

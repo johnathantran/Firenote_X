@@ -1,4 +1,104 @@
-export function bindMemoEvents(note) {
+export function bindNoteEvents(note) {
+
+  var idx = note.idx;
+  var header = note.header;
+  var editHeaderBtn = note.editHeaderBtn;
+  var minBtn = note.minBtn;
+  var delBtn = note.delBtn;
+  var noteDockListing = document.querySelector('#headerItem' + idx);
+  var noteEvents = {
+
+    // context menu for the note header
+    createFolderMoveMenu: () => {
+      var setPositionMoveToFolderMenu = createContextMenu(document.querySelector(".folderAddMenu"));
+      header.addEventListener("contextmenu", e => {
+  
+        move_select = document.getElementById("headerItem" + idx);
+        e.preventDefault();
+        const origin = {
+          left: e.pageX,
+          top: e.pageY
+        };
+        setPositionMoveToFolderMenu(origin);
+        return false;
+      });
+    },
+
+    // context menu for the note listing in the Notes Dock
+    createAddToFolderMenu: () => {
+      var setPositionAddToFolderMenu = createContextMenu(document.querySelector(".folderAddMenu"));
+      noteDockListing.addEventListener("contextmenu", e => {
+        move_select = getElm();
+        console.log(move_select);
+        e.preventDefault();
+        const origin = {
+          left: e.pageX,
+          top: e.pageY
+        };
+        setPositionAddToFolderMenu(origin);
+        return false;
+      });
+    },
+
+    dragElement: () => {
+      header.addEventListener('mousedown', function() {
+        console.log("clicked");
+        dragElement();
+      });
+    },
+
+    editHeader: () => {
+      editHeaderBtn.addEventListener('click', function() {
+        console.log("clicked");
+        editHeader();
+      });
+    },
+
+    minimize: () => {
+      minBtn.addEventListener('click', function() {
+        console.log("clicked");
+        minimize();
+      });
+    },
+
+    deleteNote: () => { 
+      delBtn.addEventListener('click', function() {
+        console.log("clicked");
+        deleteNote();
+      });
+    },
+
+    bindEnterKeyHeaderEdit: () => {
+      header.addEventListener('keyup', function (e) {
+        console.log("typing");
+        if (e.keyCode == 13) {
+          event.preventDefault();
+          editHeaderBtn.click();
+        }
+      });
+    },
+
+    hideNote: () => {
+      noteDockListing.addEventListener('click', function() {
+        hideNote();
+      });
+    }
+  };
+  noteEvents.createFolderMoveMenu();
+  noteEvents.createAddToFolderMenu();
+  noteEvents.dragElement();
+  noteEvents.editHeader();
+  noteEvents.minimize();
+  noteEvents.deleteNote();
+  noteEvents.bindEnterKeyHeaderEdit();
+  noteEvents.hideNote();
+  
+  if (note.isMemo == true) { bindMemoEvents(note) }
+  else { bindTodoListEvents(note) };
+}
+
+
+function bindMemoEvents(note) {
 
   var memoText = note.memoInput;
   var memoBtn = note.memoBtn;
@@ -40,7 +140,7 @@ export function bindMemoEvents(note) {
 };
 
 
-export function bindTodoListEvents(note) {
+function bindTodoListEvents(note) {
 
   var todoListEvents = {
     bindEnterKey: () => {
@@ -62,94 +162,3 @@ export function bindTodoListEvents(note) {
   todoListEvents.add();
   todoListEvents.undo();
 };
-
-
-export function bindNoteEvents(note) {
-
-    var idx = note.idx;
-    var header = note.header;
-    var editHeaderBtn = note.editHeaderBtn;
-    var minBtn = note.minBtn;
-    var delBtn = note.delBtn;
-    
-    var noteEvents = {
-      createFolderMoveMenu: () => {
-        var setPositionMoveToFolderMenu = createContextMenu(document.querySelector(".folderAddMenu"));
-        header.addEventListener("contextmenu", e => {
-    
-          move_select = document.getElementById("headerItem" + idx);
-          e.preventDefault();
-          const origin = {
-            left: e.pageX,
-            top: e.pageY
-          };
-          setPositionMoveToFolderMenu(origin);
-          return false;
-        });
-      },
-
-    }
-    console.log(note.idx);
-
-    // add context menu when you right click on the note header to move to folder
-    var setPositionMoveToFolderMenu = createContextMenu(document.querySelector(".folderAddMenu"));
-    header.addEventListener("contextmenu", e => {
-      console.log(idx);
-      move_select = document.getElementById("headerItem" + idx);
-      console.log(move_select);
-      e.preventDefault();
-      const origin = {
-        left: e.pageX,
-        top: e.pageY
-      };
-      setPositionMoveToFolderMenu(origin);
-      return false;
-    });
-    
-    console.log(note.isMemo);
-    if (note.isMemo == true) { bindMemoEvents(note) }
-    else { bindTodoListEvents(note) };
-  
-    var headerItem = document.querySelector('#headerItem' + idx);
-  
-    header.addEventListener('mousedown', function() {
-      console.log("clicked");
-      dragElement();
-    });
-    editHeaderBtn.addEventListener('click', function() {
-      console.log("clicked");
-      editHeader();
-    });
-    minBtn.addEventListener('click', function() {
-      console.log("clicked");
-      minimize();
-    });
-    delBtn.addEventListener('click', function() {
-      console.log("clicked");
-      deleteNote();
-    });
-    header.addEventListener('keyup', function (e) {
-      console.log("typing");
-      if (e.keyCode == 13) {
-        event.preventDefault();
-        editHeaderBtn.click();
-      }
-    });
-    headerItem.addEventListener('click', function() {
-      hideNote();
-    });
-  
-    // context menu for add to folder
-    var setPosition = createContextMenu(document.querySelector(".folderAddMenu"));
-    headerItem.addEventListener("contextmenu", e => {
-      move_select = getElm();
-      console.log(move_select);
-      e.preventDefault();
-      const origin = {
-        left: e.pageX,
-        top: e.pageY
-      };
-      setPosition(origin);
-      return false;
-    });
-  }
