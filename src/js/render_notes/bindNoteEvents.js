@@ -1,8 +1,7 @@
 export function bindMemoEvents(note) {
 
-  var memoText = note.childNodes[4];
-  var memoBtn = note.childNodes[6];
-
+  var memoText = note.memoInput;
+  var memoBtn = note.memoBtn;
   var memoEvents = {
 
       autosizeMemoInput: () => {
@@ -41,25 +40,60 @@ export function bindMemoEvents(note) {
 };
 
 
+export function bindTodoListEvents(note) {
 
+  var todoListEvents = {
+    bindEnterKey: () => {
+      note.taskInput.addEventListener('keyup', function (e) {
+        if (e.keyCode == 13) {
+          event.preventDefault();
+          addBtn.click();
+        }
+      });
+    },
+    add: () => {
+      note.addBtn.addEventListener('click', function() { add() });
+    },
+    undo: () => {
+      note.undoBtn.addEventListener('click', function() { undo() });
+    },
+  };
+  todoListEvents.bindEnterKey();
+  todoListEvents.add();
+  todoListEvents.undo();
+};
 
 
 export function bindNoteEvents(note) {
 
-    var idx = getIdx(note);
-    var header = note.childNodes[0];
-    var editHeaderBtn = note.childNodes[1];
-    var minBtn = note.childNodes[2];
-    var delBtn = note.childNodes[3];
+    var idx = note.idx;
+    var header = note.header;
+    var editHeaderBtn = note.editHeaderBtn;
+    var minBtn = note.minBtn;
+    var delBtn = note.delBtn;
     
-    var noteObj = {
-      header: note.childNodes[0],
+    var noteEvents = {
+      createFolderMoveMenu: () => {
+        var setPositionMoveToFolderMenu = createContextMenu(document.querySelector(".folderAddMenu"));
+        header.addEventListener("contextmenu", e => {
+    
+          move_select = document.getElementById("headerItem" + idx);
+          e.preventDefault();
+          const origin = {
+            left: e.pageX,
+            top: e.pageY
+          };
+          setPositionMoveToFolderMenu(origin);
+          return false;
+        });
+      },
+
     }
-    
+    console.log(note.idx);
+
     // add context menu when you right click on the note header to move to folder
-    var setPosition2 = createContextMenu(document.querySelector(".folderAddMenu"));
+    var setPositionMoveToFolderMenu = createContextMenu(document.querySelector(".folderAddMenu"));
     header.addEventListener("contextmenu", e => {
-      //move_select = getElm().parentNode;
       console.log(idx);
       move_select = document.getElementById("headerItem" + idx);
       console.log(move_select);
@@ -68,40 +102,16 @@ export function bindNoteEvents(note) {
         left: e.pageX,
         top: e.pageY
       };
-      setPosition2(origin);
+      setPositionMoveToFolderMenu(origin);
       return false;
     });
-  
-    // if it's a memo style note
-    if (note.childNodes[4].nodeName == 'TEXTAREA') {
-      
-      console.log("binding memo events");
-      bindMemoEvents(note);
-
-    }
-    else { // if it's a list style note
-      var taskInput = note.childNodes[4];
-      var addBtn = note.childNodes[5];
-      var undoBtn = note.childNodes[6];
-  
-      taskInput.addEventListener('keyup', function (e) {
-        if (e.keyCode == 13) {
-          event.preventDefault();
-          addBtn.click();
-        }
-      });
-      addBtn.addEventListener('click', function() {
-        console.log("clicked");
-        add();
-      });
-      undoBtn.addEventListener('click', function() {
-        undo();
-      });
-    }
+    
+    console.log(note.isMemo);
+    if (note.isMemo == true) { bindMemoEvents(note) }
+    else { bindTodoListEvents(note) };
   
     var headerItem = document.querySelector('#headerItem' + idx);
   
-    // drag note
     header.addEventListener('mousedown', function() {
       console.log("clicked");
       dragElement();

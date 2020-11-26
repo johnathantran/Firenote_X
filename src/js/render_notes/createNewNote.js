@@ -1,21 +1,21 @@
-export function createNewNote(noteTemplate, note) {
+export function createNewNote(note) {
 
-    var idx = noteTemplate.idx;
+    var idx = note.idx;
     var note_header = "Note " + idx;
   
     // spawn note in center of screen
-    note.style.top = ($(window).scrollTop() + $(window).height() / 2) + "px";
-    note.style.left = ($(window).scrollTop() + $(window).width() / 2) - (note.offsetWidth / 2) + "px";
+    note.note.style.top = ($(window).scrollTop() + $(window).height() / 2) + "px";
+    note.note.style.left = ($(window).scrollTop() + $(window).width() / 2) - (note.note.offsetWidth / 2) + "px";
   
     // create new note in local storage as empty list
     var dict = {
     'todo': null, // list of todo items
     'headerText': note_header, 
     'minimized': false, 
-    'posTop': note.style.top, 
-    'posLeft': note.style.left,
+    'posTop': note.note.style.top, 
+    'posLeft': note.note.style.left,
     'hidden': false,
-    'isMemo': noteTemplate.isMemo,
+    'isMemo': note.isMemo,
     'memo': null,
     };
     console.log("Creating item: " + idx);

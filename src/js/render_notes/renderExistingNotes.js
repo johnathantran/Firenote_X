@@ -1,9 +1,7 @@
 export function renderExistingNotes(note) {
-    var result = note.storageQuery;
-    console.log(result);
-    var idx = note.idx;
-    console.log(idx);
-    var dict = JSON.parse(result[idx]);
+   
+    var dict = JSON.parse(note.storageQuery[note.idx]);
+
     note.note.style.top = dict['posTop'];
     note.note.style.left = dict['posLeft'];
   
