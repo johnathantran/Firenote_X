@@ -4,7 +4,6 @@ export function renderExistingNotes(note) {
 
     note.note.style.top = dict['posTop'];
     note.note.style.left = dict['posLeft'];
-  
     //note.offsetHeight = dict['height'];
     //note.offsetWidth = dict['width'];
     
