@@ -1,5 +1,5 @@
 export function renderExistingNotes(note) {
-   
+    console.log(note);
     var dict = JSON.parse(note.storageQuery[note.idx]);
 
     note.note.style.top = dict['posTop'];
@@ -36,13 +36,17 @@ export function renderExistingNotes(note) {
   
   
   function renderMinimizedNote(note) {
-    note.memoInput.style.display = 'none';
-    note.characterCount.style.display = 'none';
-    note.memoBtn.style.display = 'none';
     try {
-        note.todoList.style.display = 'none';
+      note.taskInput.style.display = 'none';
+      note.addBtn.style.display = 'none';
+      note.undoBtn.style.display = 'none';
+      note.todoList.style.display = 'none';
     }
-    catch(err){};
+    catch(err){
+      note.memoInput.style.display = 'none';
+      note.characterCount.style.display = 'none';
+      note.memoBtn.style.display = 'none';
+    };
   }
   
 

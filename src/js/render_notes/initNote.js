@@ -7,7 +7,7 @@ import { NoteClass } from './noteClass.js'
 export function initNote(noteTemplate) {
     console.log("creating note");
     
-    var idx = noteTemplate.idx.toString();
+    let idx = noteTemplate.idx.toString();
   
     chrome.storage.sync.get([idx], function(storageQuery) {
   
@@ -32,7 +32,7 @@ export function initNote(noteTemplate) {
         noteContainer.innerHTML += '<div class="todoLists" id="todos' + idx + '"></div>';
       }
 
-      var note = new NoteClass(noteContainer, storageQuery, idx, noteTemplate.isMemo);
+      let note = new NoteClass(noteContainer, storageQuery, idx, noteTemplate.isMemo);
       
       if (noteTemplate.exists == true) {
         renderExistingNotes(note);
@@ -50,30 +50,27 @@ export function initNote(noteTemplate) {
 var attachedListeners = false;
 function bindNoteEventsOnLoad() {
   
-  var all_notes = (document.querySelectorAll('.drag'));
-  var allNotesDict = {};
+  var existingNotes = (document.querySelectorAll('.drag'));
+  var idxToNoteMap = {};
 
-  for (var i=0; i< all_notes.length; i++) {
-    allNotesDict[getIdx(all_notes[i])] = all_notes[i];
+  for (let i=0; i< existingNotes.length; i++) {
+    idxToNoteMap[getIdx(existingNotes[i])] = existingNotes[i];
   }
-  console.log(allNotesDict);
+  console.log(idxToNoteMap);
   
   chrome.storage.sync.get(['haveListeners'], function(result) {
     
     if (attachedListeners == true) { return; }
 
-    var all_idx = [];
-    for (var i = 1; i <= max_notes; i++) { all_idx.push(i.toString()) };
+    let existingIndexes = [];
+    for (let i = 1; i <= max_notes; i++) { existingIndexes.push(i.toString()) };
     
-    chrome.storage.sync.get(all_idx, function(noteObj) {
-  
-      for (var idx=1; idx <= max_notes; idx++) {
-        idx = idx.toString();
-
-        // check if a note exists with the given key/index
+    chrome.storage.sync.get(existingIndexes, function(noteObj) {
+      
+      for (let idx in idxToNoteMap) {
         try {
-          var parsedNoteObj = JSON.parse(noteObj[idx]);
-          var note = new NoteClass(allNotesDict[idx], parsedNoteObj, idx, parsedNoteObj['isMemo']);
+          let parsedNoteObj = JSON.parse(noteObj[idx]);
+          let note = new NoteClass(idxToNoteMap[idx], parsedNoteObj, idx, parsedNoteObj['isMemo']);
           console.log(note);
           bindNoteEvents(note);
         }
@@ -86,7 +83,6 @@ function bindNoteEventsOnLoad() {
       storeSync('haveListeners',true);
       attachedListeners = true;
     });
-  
     /*
     chrome.browserAction.onClicked.addListener(function() {
       chrome.tabs.create({'url':"chrome://newtab"});

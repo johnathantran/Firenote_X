@@ -13,7 +13,7 @@ export function queryNoteData() {
 
       // recreate saved notes on page load
       var all_idx = [];
-      for (var i = 1; i <= max_notes; i++) {
+      for (let i = 1; i <= max_notes; i++) {
         all_idx.push(i.toString());
       }
   
@@ -26,10 +26,9 @@ export function queryNoteData() {
             // check if a note exists with the given key/index
             try {
               console.log(noteObj[idx]);
-              var parsedNoteObj = JSON.parse(noteObj[idx]);
-              
-              var isMemo = parsedNoteObj['isMemo'];
-              var noteTemplate = {
+              let parsedNoteObj = JSON.parse(noteObj[idx]);
+              let isMemo = parsedNoteObj['isMemo'];
+              let noteTemplate = {
                 exists: true,
                 idx: idx,
                 isMemo: isMemo,

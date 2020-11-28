@@ -8,10 +8,10 @@ export function addNewNote(isMemo) {
     try {
       chrome.storage.sync.get(getAllExistingNoteIndexes(), function(result) {
         
-        var firstAvailableNoteIndex = getFirstAvailableNoteIndex(result, isMemo);
+        let firstAvailableNoteIndex = getFirstAvailableNoteIndex(result, isMemo);
         console.log(firstAvailableNoteIndex);
 
-        var noteTemplate = {
+        let noteTemplate = {
             exists: false,
             idx: firstAvailableNoteIndex.toString(),
             isMemo: isMemo,
@@ -27,9 +27,9 @@ export function addNewNote(isMemo) {
 
 function getAllExistingNoteIndexes() {
   var all_idx = [];
-  var header_list = document.querySelectorAll(".dragHeader");
+  let header_list = document.querySelectorAll(".dragHeader");
 
-  for (var j = 1; j <= header_list.length + 1; j++) {
+  for (let j = 1; j <= header_list.length + 1; j++) {
     all_idx.push(j.toString());
   }
   console.log(all_idx);
@@ -40,7 +40,7 @@ function getAllExistingNoteIndexes() {
 function checkExceedMaxNotes() {
 
     var basic = true; // basic vs premium version of firenote app
-    var header_list = document.querySelectorAll(".dragHeader");
+    let header_list = document.querySelectorAll(".dragHeader");
 
     if ((header_list.length >= max_notes) && (basic == true)) {
       alert("You have reached the maximum " + max_notes + " note limit. Please delete a note to add more. (I am working on a premium version to allow more notes and other cool features!)");
@@ -54,12 +54,12 @@ function checkExceedMaxNotes() {
 
 function getFirstAvailableNoteIndex(result) {
 
-    var existing_notes = [];
+    let existing_notes = [];
     var first_empty_slot = 1;
     var slot_found = false;
-    var header_list = document.querySelectorAll(".dragHeader");
+    let header_list = document.querySelectorAll(".dragHeader");
     
-    for (var j=1; j <= header_list.length + 1; j++) {
+    for (let j=1; j <= header_list.length + 1; j++) {
       j = j.toString();
 
       try {
@@ -86,8 +86,6 @@ function getFirstAvailableNoteIndex(result) {
         }
       };
     }
-
-    console.log(j + noteFromStorage);
     return first_empty_slot;
 }
 
