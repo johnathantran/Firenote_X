@@ -4,6 +4,7 @@ import { dragElement } from '../note_events/dragElement.js'
 import { editHeader } from '../note_events/editHeader.js'
 import { minimize } from'../note_events/minimize.js'
 import { deleteNote } from'../note_events/deleteNote.js'
+import { hideNote } from'../note_events/hideNote.js'
 
 // add event listeners for all note UI elements
 export function bindNoteEvents(note) {
@@ -80,14 +81,19 @@ export function bindNoteEvents(note) {
 }
 
 
+// add event listeners to memo style notes
+import { autoExpand } from '../submodules/autoExpandField.js'
+import { saveMemo } from '../note_events/memo/saveMemo.js'
+import { countCharacters } from'../note_events/memo/countCharacters.js'
+
 function bindMemoEvents(note) {
 
-  var memoText = note.memoInput;
-  var memoBtn = note.memoBtn;
-  var memoEvents = {
+  let memoText = note.memoInput;
+  let memoBtn = note.memoBtn;
+  let box_height;
+  let memoEvents = {
 
       autosizeMemoInput: () => {
-        var box_height;
         memoText.addEventListener('input', function (event) {
           box_height = autoExpand(event.target);
         });
@@ -96,7 +102,7 @@ function bindMemoEvents(note) {
       saveMemo: () => {
         memoBtn.addEventListener('click', function() {
           console.log("Memo saved");
-          saveMemo(getIdx(note), box_height);
+          saveMemo(box_height);
         });
       },
 
@@ -124,7 +130,7 @@ function bindMemoEvents(note) {
 
 function bindTodoListEvents(note) {
 
-  var todoListEvents = {
+  let todoListEvents = {
     bindEnterKey: () => {
       note.taskInput.addEventListener('keyup', function (e) {
         if (e.keyCode == 13) {

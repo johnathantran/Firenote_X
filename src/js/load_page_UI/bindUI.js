@@ -41,7 +41,13 @@ export function bindDockContextMenu(move_select) {
     }
 }
 
+// add event listeners to right side menu items
 import { addNewNote } from '../render_notes/addNewNote.js'
+import { hideMenu } from '../right_menu/hideMenu.js'
+import { toggleDarkMode } from '../right_menu/darkMode.js'
+import { clearAll } from '../right_menu/clearAll.js'
+import { dockAll } from '../right_menu/dockAll.js'
+
 // add event listeners to all right side menu item buttons
 export function bindMenuItems() {
 
@@ -59,7 +65,7 @@ export function bindMenuItems() {
             el.addEventListener('click', function() { clearAll() });
         },
         dockAll: () => {
-            var el = document.getElementById('clearAll');
+            var el = document.getElementById('dockAll');
             el.addEventListener('click', function() { dockAll() });
         },
         addNote: () => {    

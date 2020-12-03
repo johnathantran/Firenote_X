@@ -1,4 +1,5 @@
 import { initNote } from './initNote.js'
+import { assignColorMode } from '../submodules/assignColorMode.js'
 
 export function queryNoteData() {
 
@@ -7,7 +8,7 @@ export function queryNoteData() {
   
       if (result['firenote_dark'] == true) {
         document.body.classList.toggle("dark-mode");
-        var dark = assignColorMode("dark");
+        assignColorMode("dark");
         dark_enabled.innerHTML = "enabled";
       }
 
@@ -20,7 +21,7 @@ export function queryNoteData() {
       try {
         chrome.storage.sync.get(all_idx, function(noteObj) {
   
-          for (var idx=1; idx <= max_notes; idx++) {
+          for (let idx=1; idx <= max_notes; idx++) {
             idx = idx.toString();
             
             // check if a note exists with the given key/index
