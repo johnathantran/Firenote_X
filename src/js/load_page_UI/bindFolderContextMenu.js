@@ -1,4 +1,5 @@
 import { createContextMenu } from './submodules/createContextMenu.js'
+import { prioritize } from '../note_events/todo_list/prioritize.js'
 
 // context menu for todo list items
 export function createTodoListContextMenu() {
@@ -6,6 +7,8 @@ export function createTodoListContextMenu() {
     const move_down = document.querySelector(".movedown");
     const move_up = document.querySelector(".moveup");
     const priority_btn = document.querySelector(".priority");
+    
+    let move_select = getElm();
 
     // runs this function when a menu item is clicked
     move_up.addEventListener("click", e => {
@@ -17,6 +20,7 @@ export function createTodoListContextMenu() {
     });
     // runs this function when a menu item is clicked
     priority_btn.addEventListener("click", e => {
+        console.log("clicked");
         prioritize(move_select, "prioritize");
     });
 }

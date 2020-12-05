@@ -1,5 +1,6 @@
 import { initNote } from './initNote.js'
 import { assignColorMode } from '../submodules/assignColorMode.js'
+import { showList } from '../note_events/todo_list/showList.js'
 
 export function queryNoteData() {
 
@@ -36,7 +37,7 @@ export function queryNoteData() {
               }
               initNote(noteTemplate);    
               if (isMemo == false) {
-                show(idx);
+                showList(idx);
               }
             }
             catch (err) {

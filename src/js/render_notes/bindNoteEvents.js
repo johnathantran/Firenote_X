@@ -128,6 +128,10 @@ function bindMemoEvents(note) {
 };
 
 
+// add event listeners to todo list style notes
+import { add } from '../note_events/todo_list/addToTodoList.js'
+import { undo } from '../note_events/todo_list/undo.js'
+
 function bindTodoListEvents(note) {
 
   let todoListEvents = {
@@ -135,15 +139,15 @@ function bindTodoListEvents(note) {
       note.taskInput.addEventListener('keyup', function (e) {
         if (e.keyCode == 13) {
           event.preventDefault();
-          addBtn.click();
+          note.addBtn.click();
         }
       });
     },
     add: () => {
-      note.addBtn.addEventListener('click', function() { add() });
+      note.addBtn.addEventListener('click', function() { add(getElm()) });
     },
     undo: () => {
-      note.undoBtn.addEventListener('click', function() { undo() });
+      note.undoBtn.addEventListener('click', function() { undo(getElm()) });
     },
   };
   todoListEvents.bindEnterKey();

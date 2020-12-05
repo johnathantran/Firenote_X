@@ -1,19 +1,15 @@
 // allows a note to be dragged
 export function dragElement() {
 
-    // get the div header element
-    var elm = getElm().parentNode;
-  
-    // get the index of div element
-    var idx = getIdx(elm);
-  
-    var elm = document.getElementById("mydiv" + idx);
-    var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    let idx = getIdx(getElm().parentNode);
+    let elm = document.getElementById("mydiv" + idx);
+    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
     
     if (document.getElementById(elm.id + "header")) {
       // if present, the header is where you move the DIV from:
       document.getElementById(elm.id + "header").onmousedown = dragMouseDown;
     }
+
     function dragMouseDown(e) {
       e = e || window.event;
       console.log(e);
@@ -25,6 +21,7 @@ export function dragElement() {
       // call a function whenever the cursor moves:
       document.onmousemove = elementDrag;
     }
+
     function elementDrag(e) {
       e = e || window.event;
       e.preventDefault();
@@ -38,6 +35,7 @@ export function dragElement() {
       elm.style.left = (elm.offsetLeft - pos1) + "px";
   
     }
+
     function closeDragElement() {
       // stop moving when mouse button is released:
       document.onmouseup = null;
@@ -46,7 +44,7 @@ export function dragElement() {
       idx = getIdx(elm);
   
       chrome.storage.sync.get([idx.toString()], function(result) {
-        dict = JSON.parse(result[idx]);
+        let dict = JSON.parse(result[idx]);
         dict['posTop'] = elm.style.top;
         dict['posLeft'] = elm.style.left;
         storeSync(idx,dict);
