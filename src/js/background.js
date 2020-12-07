@@ -25,7 +25,6 @@ $(document).ready(function() {
     displayDevMsg();
 
     // add event listeners for 2 context menus
-    console.log("checkpoint");
     createTodoListContextMenu();
     createFolderContextMenu();
 

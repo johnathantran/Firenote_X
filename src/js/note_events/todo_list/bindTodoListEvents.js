@@ -37,7 +37,6 @@ export function bindTodoListEvents() {
       // add a listener for the context menu to each element in the to-do list
       elements[i].addEventListener("contextmenu", e => {
         window.move_select = getElm();
-        console.log(move_select);
 
         e.preventDefault();
         const origin = {
