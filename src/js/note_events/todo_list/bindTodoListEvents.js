@@ -36,8 +36,9 @@ export function bindTodoListEvents() {
 
       // add a listener for the context menu to each element in the to-do list
       elements[i].addEventListener("contextmenu", e => {
-        let move_select = getElm();
-        
+        window.move_select = getElm();
+        console.log(move_select);
+
         e.preventDefault();
         const origin = {
           left: e.pageX,
@@ -47,6 +48,7 @@ export function bindTodoListEvents() {
         return false;
       });
     }
+    
     // save an edit
     elements = document.getElementsByClassName('save');
     for (let i = 0; i < elements.length; i++) {

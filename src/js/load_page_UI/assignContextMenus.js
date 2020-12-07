@@ -3,13 +3,39 @@ import { prioritize } from '../note_events/todo_list/prioritize.js'
 
 // context menu for todo list items
 export function createTodoListContextMenu() {
-    
+    console.log("creating todo list context menu");
+
+    let elements = document.getElementsByClassName('span');
+
+    // assign listeners to context menu for to-do list items
+    const setPosition = createContextMenu(document.querySelector(".contextMenu"));
+
+    console.log(elements);
+    console.log(elements.length);
+    for (let i = 0; i < elements.length; i++) {
+
+        console.log("start loop");
+
+        // add a listener for the context menu to each element in the to-do list
+        elements[i].addEventListener("contextmenu", e => {
+            move_select = getElm();
+            console.log("added");
+            e.preventDefault();
+            const origin = {
+                left: e.pageX,
+                top: e.pageY
+            };
+            setPosition(origin);
+            return false;
+        });
+    }
+    console.log("end loop");
     const move_down = document.querySelector(".movedown");
     const move_up = document.querySelector(".moveup");
     const priority_btn = document.querySelector(".priority");
-    
-    let move_select = getElm();
 
+    //let move_select = getElm();
+    
     // runs this function when a menu item is clicked
     move_up.addEventListener("click", e => {
         moveItem(move_select, "up");
@@ -20,14 +46,13 @@ export function createTodoListContextMenu() {
     });
     // runs this function when a menu item is clicked
     priority_btn.addEventListener("click", e => {
-        console.log("clicked");
         prioritize(move_select, "prioritize");
     });
 }
 
 
 export function createFolderContextMenu() {
-
+    
     // create context menu for hiding and renaming folder
     var setPosition = createContextMenu(document.querySelector(".folderDelMenu"));
     var folder_list = ["folderOrange","folderPink","folderBlue","folderGreen"];
