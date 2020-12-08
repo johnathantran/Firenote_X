@@ -1,6 +1,10 @@
 import { createContextMenu } from '../submodules/createContextMenu.js'
 import { prioritize } from '../note_events/todo_list/prioritize.js'
 import { moveItem } from '../note_events/todo_list/moveItem.js'
+import { hideFolder } from '../folder_system/hideFolder.js'
+import { renameFolder } from '../folder_system/renameFolder.js'
+import { saveFolderRename } from '../folder_system/saveFolderRename.js'
+import { deleteFolder } from '../folder_system/deleteFolder.js'
 
 // context menu for todo list items
 export function createTodoListContextMenu() {
@@ -27,16 +31,16 @@ export function createTodoListContextMenu() {
 export function createFolderContextMenu() {
     
     // create context menu for hiding and renaming folder
-    var setPosition = createContextMenu(document.querySelector(".folderDelMenu"));
-    var folder_list = ["folderOrange","folderPink","folderBlue","folderGreen"];
+    let setPosition = createContextMenu(document.querySelector(".folderDelMenu"));
+    let folder_list = ["folderOrange","folderPink","folderBlue","folderGreen"];
 
-    for (var i=0; i < folder_list.length; i++) {
+    for (let i=0; i < folder_list.length; i++) {
     document.getElementById(folder_list[i]).addEventListener("contextmenu", e => {
-        move_select = getElm();
+        window.move_select = getElm();
         e.preventDefault();
         const origin = {
-        left: e.pageX,
-        top: e.pageY
+            left: e.pageX,
+            top: e.pageY
         };
         setPosition(origin);
         return false;
@@ -44,23 +48,23 @@ export function createFolderContextMenu() {
     }
     // add event listeners for folder action context menus
     document.querySelector(".hideFolder").addEventListener("click", e => {
-        hideFolder(move_select);
+        hideFolder();
     });
     document.querySelector(".renameFolder").addEventListener("click", e => {
-        renameFolder(move_select);
+        renameFolder();
     });
     document.querySelector(".deleteFolder").addEventListener("click", e => {
-        deleteFolder(move_select);
+        deleteFolder();
     });
 
     let folder_headers = document.getElementsByClassName("folderHeader");
-    for (i=0; i < folder_headers.length; i++) {
+    for (let i=0; i < folder_headers.length; i++) {
 
         folder_headers[i].addEventListener('keyup', function (e) {
 
             if (e.keyCode == 13) {
             event.preventDefault();
-            saveRename(getElm().value);
+            saveFolderRename(getElm().value);
             }
         });
     }

@@ -19,14 +19,16 @@ export function renderExistingNotes(note) {
 
     // add the new note to the appropriate folder
     assignColorRenames(dict, note_log);
-  
+    console.log(note.note);
+
     if (dict['hidden'] == true) {
-        note.style.display = 'none';
+        note.note.style.display = 'none';
         document.querySelector('#headerItem' + note.idx).style.color = 'silver';
     }
     if (dict['isMemo'] == true) {
+        console.log(dict['memo']);
         note.memoInput.value = dict['memo'];
-        var textEntered = note.memoInput.value;
+        let textEntered = note.memoInput.value;
         note.characterCount.textContent = (600 - textEntered.length) + " characters left";
         // set the textarea to the saved height
         note.memoInput.style.height = dict['boxHeight'] + "px"; 

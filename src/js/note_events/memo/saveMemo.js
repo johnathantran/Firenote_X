@@ -1,4 +1,5 @@
 import { getNote } from '../../submodules/getNote.js'
+import { fade } from '../../submodules/fade.js'
 
 // save memo to storage
 export function saveMemo(box_height) {

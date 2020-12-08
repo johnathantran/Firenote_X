@@ -1,4 +1,5 @@
 import { getNote } from '../submodules/getNote.js'
+import { fade } from '../submodules/fade.js'
 
 // allows edit of the header of a note
 export function editHeader() {

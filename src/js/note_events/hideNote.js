@@ -39,5 +39,6 @@ export function hideNote() {
       }
       console.log(dict);
       storeSync(idx,dict);
+      return;
     });
   }
