@@ -1,4 +1,7 @@
 import { strikeThrough } from './strikeThrough.js'
+import { remove } from './remove.js'
+import { editListItem } from './editListItem.js'
+import { saveListItemEdit } from './saveListItemEdit.js'
 
 // adds event handlers for todo items on a note
 export function bindTodoListEvents() {
@@ -15,9 +18,7 @@ export function bindTodoListEvents() {
     elements = document.getElementsByClassName('crossoff');
     for (let i = 0; i < elements.length; i++) {
         elements[i].addEventListener('click', function() {
-        console.log("crossoff clicked");
-        // crossed is false or true?
-        remove(false);
+        remove(getElm());
       });
     }
 
@@ -31,7 +32,7 @@ export function bindTodoListEvents() {
   
       elements[i].addEventListener('click', function() {
         console.log("edit item clicked");  
-        editNote();
+        editListItem();
         });
 
       // add a listener for the context menu to each element in the to-do list
@@ -53,7 +54,7 @@ export function bindTodoListEvents() {
     for (let i = 0; i < elements.length; i++) {
         elements[i].addEventListener('click', function() {
         console.log("save item clicked");  
-        saveEdit();
+        saveListItemEdit();
       });
     }
   }

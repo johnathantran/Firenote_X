@@ -8,6 +8,8 @@ import { createTodoListContextMenu, createFolderContextMenu } from './load_page_
 
 // global variable to define selected right-clicked item for context menus
 var move_select;
+var originalListItem;
+
 $(document).ready(function() {
     // bind collapsible UI menus
     bindCollapsible();
