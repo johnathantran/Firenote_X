@@ -9,6 +9,7 @@ import { createTodoListContextMenu, createFolderContextMenu } from './load_page_
 // global variable to define selected right-clicked item for context menus
 var move_select;
 var originalListItem;
+var color_dict = {"Orange":"#ffdfba", "Pink":"#ffedf8", "Blue":"#d0ebfc", "Green":"#ceffeb", "Yellow":"#fcfacf"};
 
 $(document).ready(function() {
     // bind collapsible UI menus

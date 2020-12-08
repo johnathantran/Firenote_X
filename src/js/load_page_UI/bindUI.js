@@ -1,4 +1,5 @@
 // dependencies
+import { moveToFolder } from '../folder_system/moveToFolder.js'
 
 // adds event listeners to collapsible UI menus
 export function bindCollapsible() {
@@ -27,18 +28,14 @@ export function bindCollapsible() {
 }
 
 // add event listeners to note dock context menu items
-export function bindDockContextMenu(move_select) {
-    var folderIDs = ["moveOrange", "movePink", "moveBlue", "moveGreen", "moveYellow"];
-    
-    for (var i = 0; i < folderIDs.length; i++) {
-        var folder = document.getElementById(folderIDs[i]);
+export function bindDockContextMenu() {
 
-        console.log(folderIDs[i]);
-
+    Object.keys(window.color_dict).forEach(function(key) {
+        let folder = document.getElementById("move" + key);
         folder.addEventListener('click',function() {
-            moveToFolder(folderIDs[i].replace('move',''), moveSelect);
+            moveToFolder(key, window.move_select);
         });
-    }
+    });
 }
 
 // add event listeners to right side menu items
@@ -93,10 +90,3 @@ export function bindMenuItems() {
     menuFuncs.addMemo();
     menuFuncs.addFolderButtons();
 };
-
-/*
-module.exports = {
-    bindCollapsible: bindCollapsible,
-    bindDockContextMenu: bindDockContextMenu,
-}
-*/

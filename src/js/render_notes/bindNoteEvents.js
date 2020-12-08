@@ -1,5 +1,5 @@
 import { createFolderMoveMenu } from '../note_events/createFolderMoveMenu.js'
-import { createAddToFolderMenu } from '../note_events/createAddToFolderMenu.js'
+import { createAddToFolderMenu } from '../folder_system/createAddToFolderMenu.js'
 import { dragElement } from '../note_events/dragElement.js'
 import { editHeader } from '../note_events/editHeader.js'
 import { minimize } from'../note_events/minimize.js'

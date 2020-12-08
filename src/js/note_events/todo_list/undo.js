@@ -6,7 +6,7 @@ export function undo(elm) {
   
     chrome.storage.sync.get([note.idx.toString()], function(result) {
 
-      dict = JSON.parse(result[note.idx]);
+      let dict = JSON.parse(result[note.idx]);
       console.log(dict['removed']);
       if (dict['removed'] == undefined) {
         dict['removed'] = "";

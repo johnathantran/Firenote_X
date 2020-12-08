@@ -1,3 +1,5 @@
+import { bindNoteDockListing } from './bindNoteDockListing.js'
+
 export function createNewNote(note) {
 
     var idx = note.idx;
@@ -23,11 +25,8 @@ export function createNewNote(note) {
     storeSync(idx,dict);
   
     // adds the new note header to Notes Dock
-    var note_log = document.createElement('div');
-    
-    document.querySelector('#myNotes').appendChild(note_log);
-    note_log.innerHTML += '<p class="headerList" id="headerItem' + idx + '">' + note_header + '</p>';
-  
+    bindNoteDockListing(note_header);
+
     // check if the note is hidden
     if (dict['hidden'] == true) {
         note.style.display = 'none';

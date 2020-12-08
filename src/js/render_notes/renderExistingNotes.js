@@ -1,3 +1,6 @@
+import { bindNoteDockListing } from './bindNoteDockListing.js'
+import { moveToFolder } from '../folder_system/moveToFolder.js'
+
 export function renderExistingNotes(note) {
     console.log(note);
     var dict = JSON.parse(note.storageQuery[note.idx]);
@@ -6,25 +9,21 @@ export function renderExistingNotes(note) {
     note.note.style.left = dict['posLeft'];
     //note.offsetHeight = dict['height'];
     //note.offsetWidth = dict['width'];
-    
   
-    // check if the note is minimized
     if (dict['minimized'] == true) { renderMinimizedNote(note) };
   
     // adds the new note header to Notes Dock
-    var note_log = renderDockHeader(note, dict, note.idx);
-  
+    var note_header = dict['headerText'];
+    note.header.value = note_header;
+    let note_log = bindNoteDockListing(note_header, note.idx)
+
     // add the new note to the appropriate folder
     assignColorRenames(dict, note_log);
   
-    // check if the note is hidden
     if (dict['hidden'] == true) {
         note.style.display = 'none';
         document.querySelector('#headerItem' + note.idx).style.color = 'silver';
     }
-  
-    // if note is a memo, query saved text
-    // instead of if memo == true
     if (dict['isMemo'] == true) {
         note.memoInput.value = dict['memo'];
         var textEntered = note.memoInput.value;
@@ -33,7 +32,6 @@ export function renderExistingNotes(note) {
         note.memoInput.style.height = dict['boxHeight'] + "px"; 
     }
   }
-  
   
   function renderMinimizedNote(note) {
     try {
@@ -48,34 +46,23 @@ export function renderExistingNotes(note) {
       note.memoBtn.style.display = 'none';
     };
   }
-  
 
-  function renderDockHeader(note, dict, idx) {
-    var note_header = dict['headerText'];
-    note.header.value = note_header;
-    var note_log = document.createElement('div');
-    document.querySelector('#myNotes').appendChild(note_log);
-    note_log.innerHTML += '<p class="headerList" id="headerItem' + note.idx + '">' + note_header + '</p>';
-    return note_log;
-  }
-  
-
-  //add the new note to the appropriate folder
+  // add the new note to the appropriate folder
   function assignColorRenames(dict, note_log) {
     
-    var color = dict['folderColor'];
+    let color = dict['folderColor'];
   
     // Yellow is the default color option
     if ((color !== "Yellow") && (color !== undefined)) {
-  
-        moveToFolder(color,note_log.childNodes[0]);
+
+        moveToFolder(color, note_log.childNodes[0]);
   
         chrome.storage.sync.get(['folderNames'], function(result) {
         try {
-            var folderNames = result['folderNames'];
-            var newFolderName = color;
+            let folderNames = result['folderNames'];
+            let newFolderName = color;
             if (folderNames[color] !== undefined) {
-                var newFolderName = folderNames[color];
+                newFolderName = folderNames[color];
             }
             document.getElementById("input" + color).value = newFolderName;
             document.getElementById("option" + color).innerHTML = newFolderName;
