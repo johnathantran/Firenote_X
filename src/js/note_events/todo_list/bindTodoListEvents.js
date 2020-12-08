@@ -2,6 +2,7 @@ import { strikeThrough } from './strikeThrough.js'
 import { remove } from './remove.js'
 import { editListItem } from './editListItem.js'
 import { saveListItemEdit } from './saveListItemEdit.js'
+import { createContextMenu } from '../../submodules/createContextMenu.js'
 
 // adds event handlers for todo items on a note
 export function bindTodoListEvents() {

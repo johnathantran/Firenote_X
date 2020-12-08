@@ -1,4 +1,4 @@
-import { createContextMenu } from './submodules/createContextMenu.js'
+import { createContextMenu } from '../submodules/createContextMenu.js'
 import { prioritize } from '../note_events/todo_list/prioritize.js'
 import { moveItem } from '../note_events/todo_list/moveItem.js'
 

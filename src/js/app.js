@@ -276,29 +276,9 @@ function storeSync(idx,dict) {
 // returns the index of the note
 function getIdx(elm) {
   // if there are more than 10 notes, get last 2 chars
-  idx = elm.id.slice(-2);
+  let idx = elm.id.slice(-2);
   if (isNaN(idx) == true) {
     idx = elm.id.slice(-1);
   }
   return idx;
-}
-
-// creates a context menu
-function createContextMenu(menu) {
-  let menuVisible = false;
-  const toggleMenu = command => {
-    menu.style.display = command === "show" ? "block" : "none";
-    menuVisible = !menuVisible;
-  };
-  // sets the position of the menu at mouse click
-  const setPosition = ({ top, left }) => {
-    menu.style.left = `${left}px`;
-    menu.style.top = `${top}px`;
-    toggleMenu("show");
-  };
-  // hides the context menu if you click outside it
-  window.addEventListener("click", e => {
-    if (menuVisible) toggleMenu("hide");
-  });
-  return setPosition;
 }

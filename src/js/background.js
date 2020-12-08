@@ -33,13 +33,8 @@ $(document).ready(function() {
     console.log("end load page");
 });
 
-
 // load previously created notes on the page and bind note events
 import { queryNoteData } from './render_notes/queryNoteData.js'
 queryNoteData();
-
-let elements = document.getElementsByClassName('span');
-console.log(elements);
-console.log(elements.length);
 
 

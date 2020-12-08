@@ -1,3 +1,5 @@
+import { createContextMenu } from '../submodules/createContextMenu.js'
+
 // create a context menu to move a note to a certain folder by right-clicking
 // the note dock listing
 export function createAddToFolderMenu(note) {
