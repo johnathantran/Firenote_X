@@ -41,7 +41,6 @@ export function queryNoteData() {
               }
             }
             catch (err) {
-              console.log(err);
               continue;
             }
           }

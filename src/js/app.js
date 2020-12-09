@@ -27,7 +27,7 @@ chrome.storage.sync.getBytesInUse(function(result){
 });
 
 // note colors used
-var color_dict = {"Orange":"#ffdfba", "Pink":"#ffedf8", "Blue":"#d0ebfc", "Green":"#ceffeb", "Yellow":"#fcfacf"};
+
 // max allowed notes on screen
 const max_notes = 15;
 // indicates if dark mode is enabled
@@ -49,11 +49,11 @@ function getElm(e) {
 
 // stores item into Google Chrome sync
 function storeSync(idx,dict) {
-  var key = idx.toString(),
+  let key = idx.toString(),
       value = JSON.stringify(
           dict
       );
-  var jsonfile = {};
+  let jsonfile = {};
   jsonfile[key] = value;
   chrome.storage.sync.set(jsonfile, function () {
       console.log('Saved', key, value);

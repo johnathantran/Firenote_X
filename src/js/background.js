@@ -37,5 +37,3 @@ $(document).ready(function() {
 // load previously created notes on the page and bind note events
 import { queryNoteData } from './render_notes/queryNoteData.js'
 queryNoteData();
-
-

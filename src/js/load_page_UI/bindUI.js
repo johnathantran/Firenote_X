@@ -29,6 +29,7 @@ export function bindCollapsible() {
 
 // add event listeners to note dock context menu items
 export function bindDockContextMenu() {
+    window.color_dict = {"Orange":"#ffdfba", "Pink":"#ffedf8", "Blue":"#d0ebfc", "Green":"#ceffeb", "Yellow":"#fcfacf"};
 
     Object.keys(window.color_dict).forEach(function(key) {
         let folder = document.getElementById("move" + key);

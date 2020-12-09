@@ -25,7 +25,7 @@ export function createNewNote(note) {
     storeSync(idx,dict);
   
     // adds the new note header to Notes Dock
-    bindNoteDockListing(note_header);
+    bindNoteDockListing(note_header, idx);
 
     // check if the note is hidden
     if (dict['hidden'] == true) {

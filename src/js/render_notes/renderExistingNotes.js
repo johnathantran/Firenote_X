@@ -2,9 +2,8 @@ import { bindNoteDockListing } from './bindNoteDockListing.js'
 import { moveToFolder } from '../folder_system/moveToFolder.js'
 
 export function renderExistingNotes(note) {
-    console.log(note);
-    var dict = JSON.parse(note.storageQuery[note.idx]);
 
+    var dict = JSON.parse(note.storageQuery[note.idx]);
     note.note.style.top = dict['posTop'];
     note.note.style.left = dict['posLeft'];
     //note.offsetHeight = dict['height'];
@@ -19,14 +18,12 @@ export function renderExistingNotes(note) {
 
     // add the new note to the appropriate folder
     assignColorRenames(dict, note_log);
-    console.log(note.note);
 
     if (dict['hidden'] == true) {
         note.note.style.display = 'none';
         document.querySelector('#headerItem' + note.idx).style.color = 'silver';
     }
     if (dict['isMemo'] == true) {
-        console.log(dict['memo']);
         note.memoInput.value = dict['memo'];
         let textEntered = note.memoInput.value;
         note.characterCount.textContent = (600 - textEntered.length) + " characters left";

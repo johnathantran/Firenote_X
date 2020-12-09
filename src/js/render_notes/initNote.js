@@ -5,7 +5,6 @@ import { NoteClass } from './noteClass.js'
 
 // creates notes when the page is loaded (note exists), or when the Add Note button is clicked (note does not exist yet)
 export function initNote(noteTemplate) {
-    console.log("creating note");
     
     let idx = noteTemplate.idx.toString();
   
@@ -56,7 +55,6 @@ function bindNoteEventsOnLoad() {
   for (let i=0; i< existingNotes.length; i++) {
     idxToNoteMap[getIdx(existingNotes[i])] = existingNotes[i];
   }
-  console.log(idxToNoteMap);
   
   chrome.storage.sync.get(['haveListeners'], function(result) {
     
@@ -71,7 +69,6 @@ function bindNoteEventsOnLoad() {
         try {
           let parsedNoteObj = JSON.parse(noteObj[idx]);
           let note = new NoteClass(idxToNoteMap[idx], parsedNoteObj, idx, parsedNoteObj['isMemo']);
-          console.log(note);
           bindNoteEvents(note);
         }
         catch (err) {
