@@ -9,13 +9,13 @@ import { hideNote } from'../note_events/hideNote.js'
 // add event listeners for all note UI elements
 export function bindNoteEvents(note) {
 
-  var idx = note.idx;
-  var header = note.header;
-  var editHeaderBtn = note.editHeaderBtn;
-  var minBtn = note.minBtn;
-  var delBtn = note.delBtn;
+  let idx = note.idx;
+  let header = note.header;
+  let editHeaderBtn = note.editHeaderBtn;
+  let minBtn = note.minBtn;
+  let delBtn = note.delBtn;
   
-  var noteEvents = {
+  let noteEvents = {
 
     // context menu for the note header
     createFolderMoveMenu: (note) => {

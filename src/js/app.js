@@ -14,20 +14,6 @@ VIII. TODO LIST FUNCTIONS
 IX. HELPER FUNCTIONS
 */ 
 
-// *****************************************************************************************************************
-// *****************************************************************************************************************
-// I. GLOBAL VARIABLES
-// *****************************************************************************************************************
-// *****************************************************************************************************************
-
-
-// check user storage:
-chrome.storage.sync.getBytesInUse(function(result){
-  console.log("Bytes in use: " + result + " out of 102,400 quota bytes")
-});
-
-// note colors used
-
 // max allowed notes on screen
 const max_notes = 15;
 // indicates if dark mode is enabled

@@ -4,16 +4,16 @@ import { moveToFolder } from '../folder_system/moveToFolder.js'
 // adds event listeners to collapsible UI menus
 export function bindCollapsible() {
 
-    var collapsibles = [document.getElementsByClassName("collapsible"), document.getElementsByClassName("folderCollapsible")];
+    let collapsibles = [document.getElementsByClassName("collapsible"), document.getElementsByClassName("folderCollapsible")];
 
-    for (var j = 0; j < collapsibles.length; j++) {
+    for (let j = 0; j < collapsibles.length; j++) {
 
-        var coll = collapsibles[j];
+        let coll = collapsibles[j];
 
-        for (var i = 0; i < coll.length; i++) {
+        for (let i = 0; i < coll.length; i++) {
             coll[i].addEventListener("click", function() {
             this.classList.toggle("active");
-            var content = this.nextElementSibling;
+            let content = this.nextElementSibling;
 
             if (content !== null) {
                 if (content.style.maxHeight){
@@ -49,34 +49,34 @@ import { dockAll } from '../right_menu/dockAll.js'
 // add event listeners to all right side menu item buttons
 export function bindMenuItems() {
 
-    var menuFuncs = {
+    let menuFuncs = {
         hideMenu: () => {
-            var el = document.getElementById('hideMenu');
+            let el = document.getElementById('hideMenu');
             el.addEventListener('click', function() { hideMenu(this) });
         },
         toggleDarkMode: () => {
-            var el = document.getElementById('toggleDarkMode');
+            let el = document.getElementById('toggleDarkMode');
             el.addEventListener('click', function() { toggleDarkMode() });
         },
         clearAll: () => {
-            var el = document.getElementById('clearAll');
+            let el = document.getElementById('clearAll');
             el.addEventListener('click', function() { clearAll() });
         },
         dockAll: () => {
-            var el = document.getElementById('dockAll');
+            let el = document.getElementById('dockAll');
             el.addEventListener('click', function() { dockAll() });
         },
         addNote: () => {    
-            var el = document.getElementById('addNote');
+            let el = document.getElementById('addNote');
             el.addEventListener('click', function() { addNewNote(false) });
         },
         addMemo: () => {
-            var el = document.getElementById('addMemo');
+            let el = document.getElementById('addMemo');
             el.addEventListener('click', function() { addNewNote(true) });
         },
         addFolderButtons: () => {
-            var el = document.getElementsByClassName('circle');
-            for (var i = 0; i < el.length; i++) {
+            let el = document.getElementsByClassName('circle');
+            for (let i = 0; i < el.length; i++) {
                 el[i].addEventListener('click', function() {
                     createFolder();
                 });
