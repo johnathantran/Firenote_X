@@ -1,4 +1,5 @@
 import { createContextMenu } from '../submodules/createContextMenu.js'
+import { getElm } from '../submodules/getElement.js'
 
 // create a context menu to move a note to a certain folder
 export function createFolderMoveMenu(note) {

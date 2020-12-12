@@ -1,3 +1,5 @@
+import { getIdx } from './getIndex.js'
+
 // returns the closest ancestor which is a div in the body (aka the note container)
 import { NoteClass } from '../render_notes/noteClass.js'
 

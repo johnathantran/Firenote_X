@@ -1,5 +1,6 @@
 import { getNote } from '../../submodules/getNote.js'
 import { showList } from './showList.js'
+import { storeSync } from '../../submodules/storeSync.js'
 
 // add a new todo list item to an existing list
 export function add(elm) {

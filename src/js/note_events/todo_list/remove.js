@@ -1,5 +1,6 @@
 import { getNote } from '../../submodules/getNote.js'
 import { showList } from './showList.js';
+import { storeSync } from '../../submodules/storeSync.js'
 
 // remove an item from a todo list
 export function remove(elm) {

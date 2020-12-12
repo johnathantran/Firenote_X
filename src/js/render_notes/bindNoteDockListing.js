@@ -1,3 +1,5 @@
+import { getElm } from '../submodules/getElement.js'
+ 
  // add note header and event listener to Notes Dock
  export function bindNoteDockListing(noteHeader, idx) {
 

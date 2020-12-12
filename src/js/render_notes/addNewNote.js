@@ -42,11 +42,11 @@ function checkExceedMaxNotes() {
     var basic = true; // basic vs premium version of firenote app
     let header_list = document.querySelectorAll(".dragHeader");
 
-    if ((header_list.length >= max_notes) && (basic == true)) {
-      alert("You have reached the maximum " + max_notes + " note limit. Please delete a note to add more. (I am working on a premium version to allow more notes and other cool features!)");
+    if ((header_list.length >= window.max_notes) && (basic == true)) {
+      alert("You have reached the maximum " + window.max_notes + " note limit. Please delete a note to add more. (I am working on a premium version to allow more notes and other cool features!)");
       return false;
     }
-    if (header_list.length >= max_notes) {
+    if (header_list.length >= window.max_notes) {
       alert("You have reached the maximum note limit! Please delete a note to add more.");
       return true;
     }

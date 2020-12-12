@@ -1,3 +1,5 @@
+import { getIdx } from '../submodules/getIndex.js'
+
 // deletes all notes in a chosen folder
 export function deleteFolder() {
     let move_select = window.move_select;

@@ -3,6 +3,7 @@ import { remove } from './remove.js'
 import { editListItem } from './editListItem.js'
 import { saveListItemEdit } from './saveListItemEdit.js'
 import { createContextMenu } from '../../submodules/createContextMenu.js'
+import { getElm } from '../../submodules/getElement.js'
 
 // adds event handlers for todo items on a note
 export function bindTodoListEvents() {

@@ -1,4 +1,5 @@
 import { getNote } from '../submodules/getNote.js'
+import { getElm } from '../submodules/getElement.js'
 
 // deletes a note from UI and from storage
 export function deleteNote() {

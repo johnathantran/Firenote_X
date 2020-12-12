@@ -1,4 +1,5 @@
 import { bindNoteDockListing } from './bindNoteDockListing.js'
+import { storeSync } from '../submodules/storeSync.js'
 
 export function createNewNote(note) {
 

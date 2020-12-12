@@ -1,5 +1,6 @@
-// hide all notes
+import { storeSync } from '../submodules/storeSync.js'
 
+// hide all notes
 export function dockAll() {
 
     // recreate saved notes on page load

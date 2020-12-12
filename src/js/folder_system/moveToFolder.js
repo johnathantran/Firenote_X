@@ -1,3 +1,6 @@
+import { getIdx } from '../submodules/getIndex.js'
+import { storeSync } from '../submodules/storeSync.js'
+
 // move note to folder
 export function moveToFolder(color, loadedItem) {
 

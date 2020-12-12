@@ -1,4 +1,5 @@
 import { getNote } from '../../submodules/getNote.js'
+import { getElm } from '../../submodules/getElement.js'
 
 // dynamically change number of characters remaining in memo
 export function countCharacters(e) {    

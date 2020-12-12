@@ -5,6 +5,7 @@ import { editHeader } from '../note_events/editHeader.js'
 import { minimize } from'../note_events/minimize.js'
 import { deleteNote } from'../note_events/deleteNote.js'
 import { hideNote } from'../note_events/hideNote.js'
+import { getElm } from '../submodules/getElement.js'
 
 // add event listeners for all note UI elements
 export function bindNoteEvents(note) {

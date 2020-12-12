@@ -1,3 +1,7 @@
+import { getIdx } from '../submodules/getIndex.js'
+import { getElm } from '../submodules/getElement.js'
+import { storeSync } from '../submodules/storeSync.js'
+
 // hides a note from view by clicking on it in the Notes Dock
 export function hideNote() {
 

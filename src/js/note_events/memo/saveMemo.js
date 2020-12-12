@@ -1,5 +1,7 @@
 import { getNote } from '../../submodules/getNote.js'
 import { fade } from '../../submodules/fade.js'
+import { getElm } from '../../submodules/getElement.js'
+import { storeSync } from '../../submodules/storeSync.js'
 
 // save memo to storage
 export function saveMemo(box_height) {

@@ -15,6 +15,12 @@ var originalListItem;
 // selected color codes for folder system
 var color_dict = {"Orange":"#ffdfba", "Pink":"#ffedf8", "Blue":"#d0ebfc", "Green":"#ceffeb", "Yellow":"#fcfacf"};
 
+// max allowed notes on screen
+const max_notes = 15;
+
+// indicates if dark mode is enabled
+var dark_enabled = document.getElementById("darkEnabled");
+
 $(document).ready(function() {
 
     // check user storage limits

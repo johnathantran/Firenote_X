@@ -1,3 +1,7 @@
+import { getIdx } from '../submodules/getIndex.js'
+import { getElm } from '../submodules/getElement.js'
+import { storeSync } from '../submodules/storeSync.js'
+
 // allows a note to be dragged
 export function dragElement() {
 

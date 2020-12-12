@@ -1,5 +1,7 @@
 import { getNote } from '../submodules/getNote.js'
 import { fade } from '../submodules/fade.js'
+import { getElm } from '../submodules/getElement.js'
+import { storeSync } from '../submodules/storeSync.js'
 
 // allows edit of the header of a note
 export function editHeader() {

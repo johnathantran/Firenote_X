@@ -1,5 +1,7 @@
 import { getNote } from '../../submodules/getNote.js'
 import { showList } from './showList.js'
+import { getElm } from '../../submodules/getElement.js'
+import { storeSync } from '../../submodules/storeSync.js'
 
 // strike through a todo list item
 export function strikeThrough(elm) {

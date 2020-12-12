@@ -1,3 +1,6 @@
+import { getIdx } from '../submodules/getIndex.js'
+import { storeSync } from '../submodules/storeSync.js'
+
 // hide all notes in a folder
 export function hideFolder() {
 

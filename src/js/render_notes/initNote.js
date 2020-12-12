@@ -2,10 +2,12 @@ import { bindNoteEvents } from "./bindNoteEvents.js"
 import { renderExistingNotes } from './renderExistingNotes.js'
 import { createNewNote } from './createNewNote.js'
 import { NoteClass } from './noteClass.js'
+import { getIdx } from '../submodules/getIndex.js'
+import { storeSync } from '../submodules/storeSync.js'
 
 // creates notes when the page is loaded (note exists), or when the Add Note button is clicked (note does not exist yet)
 export function initNote(noteTemplate) {
-    
+    console.log("init");
     let idx = noteTemplate.idx.toString();
   
     chrome.storage.sync.get([idx], function(storageQuery) {
@@ -61,7 +63,7 @@ function bindNoteEventsOnLoad() {
     if (attachedListeners == true) { return; }
 
     let existingIndexes = [];
-    for (let i = 1; i <= max_notes; i++) { existingIndexes.push(i.toString()) };
+    for (let i = 1; i <= window.max_notes; i++) { existingIndexes.push(i.toString()) };
     
     chrome.storage.sync.get(existingIndexes, function(noteObj) {
       

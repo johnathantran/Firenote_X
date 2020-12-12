@@ -1,5 +1,6 @@
 import { getNote } from '../../submodules/getNote.js'
 import { showList } from './showList.js';
+import { storeSync } from '../../submodules/storeSync.js'
 
 // move an item up or down a todo list
 export function moveItem(elm, direction) {
