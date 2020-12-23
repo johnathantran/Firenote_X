@@ -11,7 +11,7 @@ export function queryNoteData() {
       if (result['firenote_dark'] == true) {
         document.body.classList.toggle("dark-mode");
         assignColorMode("dark");
-        //dark_enabled.innerHTML = "enabled";
+        dark_enabled.innerHTML = "enabled";
       }
 
       // recreate saved notes on page load

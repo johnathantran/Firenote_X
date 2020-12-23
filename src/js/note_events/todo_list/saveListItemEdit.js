@@ -1,6 +1,7 @@
 import { getNote } from '../../submodules/getNote.js'
 import { getElm } from '../../submodules/getElement.js'
 import { storeSync } from '../../submodules/storeSync.js'
+import { fade } from '../../submodules/fade.js'
 
 // save an edit to a list item in a todo list
 export function saveListItemEdit() {

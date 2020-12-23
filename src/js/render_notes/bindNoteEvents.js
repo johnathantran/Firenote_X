@@ -72,6 +72,7 @@ export function bindNoteEvents(note) {
   noteEvents.createAddToFolderMenu(note);
   noteEvents.dragElement();
   noteEvents.editHeader();
+  console.log(note.minBtn);
   noteEvents.minimize();
   noteEvents.deleteNote();
   noteEvents.bindEnterKeyHeaderEdit();

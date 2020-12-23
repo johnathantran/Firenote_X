@@ -41,6 +41,7 @@ export function initNote(noteTemplate) {
       }
       else {
         createNewNote(note);
+        console.log("binding new");
         bindNoteEvents(note);
       } 
     });
@@ -57,20 +58,23 @@ function bindNoteEventsOnLoad() {
   for (let i=0; i< existingNotes.length; i++) {
     idxToNoteMap[getIdx(existingNotes[i])] = existingNotes[i];
   }
-  
+
+  let existingIndexes = [];
   chrome.storage.sync.get(['haveListeners'], function(result) {
-    
+    console.log(result);
+    attachedListeners = result['haveListeners'];
     if (attachedListeners == true) { return; }
 
-    let existingIndexes = [];
     for (let i = 1; i <= window.max_notes; i++) { existingIndexes.push(i.toString()) };
-    
+
     chrome.storage.sync.get(existingIndexes, function(noteObj) {
-      
+      console.log(idxToNoteMap);
       for (let idx in idxToNoteMap) {
         try {
+          console.log(idx);
           let parsedNoteObj = JSON.parse(noteObj[idx]);
           let note = new NoteClass(idxToNoteMap[idx], parsedNoteObj, idx, parsedNoteObj['isMemo']);
+          console.log("binding on load, listeners for this note: " + idx);
           bindNoteEvents(note);
         }
         catch (err) {
@@ -82,10 +86,11 @@ function bindNoteEventsOnLoad() {
       storeSync('haveListeners',true);
       attachedListeners = true;
     });
-    /*
-    chrome.browserAction.onClicked.addListener(function() {
-      chrome.tabs.create({'url':"chrome://newtab"});
-    });
-    */
+  
+  /*
+  chrome.browserAction.onClicked.addListener(function() {
+    chrome.tabs.create({'url':"chrome://newtab"});
+  });
+  */
   });
 }

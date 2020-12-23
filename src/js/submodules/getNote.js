@@ -5,10 +5,12 @@ import { NoteClass } from '../render_notes/noteClass.js'
 
 export function getNote(elm) {
     let noteContainer = elm.closest("body div");
-
-    if (noteContainer.className == "todoLists") {
-        noteContainer = noteContainer.parentNode.closest("body div");
+    try {
+        if (noteContainer.className == "todoLists") {
+            noteContainer = noteContainer.parentNode.closest("body div");
+        }
     }
+    catch(err) {console.log(err)}
 
     let idx = getIdx(noteContainer).toString();
     let isMemo = false;
