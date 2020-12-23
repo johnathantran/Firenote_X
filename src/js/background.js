@@ -21,7 +21,7 @@ window.max_notes = 15;
 // indicates if dark mode is enabled
 window.dark_enabled = document.getElementById("darkEnabled");
 
-$(document).ready(function() {
+window.onload = function(){
 
     // check user storage limits
     getBytesInUse();
@@ -46,7 +46,7 @@ $(document).ready(function() {
     createFolderContextMenu();
 
     console.log("page loaded");
-});
+};
 
 // load previously created notes on the page and bind note events
 import { queryNoteData } from './render_notes/queryNoteData.js'
