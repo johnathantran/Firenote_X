@@ -1,7 +1,6 @@
 import { initNote } from './initNote.js'
 import { assignColorMode } from '../submodules/assignColorMode.js'
 import { showList } from '../note_events/todo_list/showList.js'
-let max_notes = window.max_notes;
 
 export function queryNoteData() {
   
@@ -22,13 +21,13 @@ export function queryNoteData() {
   
       try {
         chrome.storage.sync.get(all_idx, function(noteObj) {
-          console.log(max_notes);
+
           for (let idx=1; idx <= window.max_notes; idx++) {
+
             idx = idx.toString();
-            console.log("querying");
+ 
             // check if a note exists with the given key/index
             try {
-              console.log(noteObj[idx]);
               let parsedNoteObj = JSON.parse(noteObj[idx]);
               let isMemo = parsedNoteObj['isMemo'];
               let noteTemplate = {
@@ -36,7 +35,6 @@ export function queryNoteData() {
                 idx: idx,
                 isMemo: isMemo,
               }
-              console.log("init");
               initNote(noteTemplate);    
               if (isMemo == false) {
                 showList(idx);

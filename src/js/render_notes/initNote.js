@@ -7,7 +7,7 @@ import { storeSync } from '../submodules/storeSync.js'
 
 // creates notes when the page is loaded (note exists), or when the Add Note button is clicked (note does not exist yet)
 export function initNote(noteTemplate) {
-    console.log("init");
+ 
     let idx = noteTemplate.idx.toString();
   
     chrome.storage.sync.get([idx], function(storageQuery) {
@@ -36,61 +36,11 @@ export function initNote(noteTemplate) {
       let note = new NoteClass(noteContainer, storageQuery, idx, noteTemplate.isMemo);
       
       if (noteTemplate.exists == true) {
-        renderExistingNotes(note);
-        bindNoteEventsOnLoad();
+        renderExistingNotes(note); 
       }
       else {
         createNewNote(note);
-        console.log("binding new");
-        bindNoteEvents(note);
-      } 
+      }
+      bindNoteEvents(note);
     });
 };
-
-
-// adds event listeners when page loads
-var attachedListeners = false;
-function bindNoteEventsOnLoad() {
-  
-  var existingNotes = (document.querySelectorAll('.drag'));
-  var idxToNoteMap = {};
-
-  for (let i=0; i< existingNotes.length; i++) {
-    idxToNoteMap[getIdx(existingNotes[i])] = existingNotes[i];
-  }
-
-  let existingIndexes = [];
-  chrome.storage.sync.get(['haveListeners'], function(result) {
-    console.log(result);
-    attachedListeners = result['haveListeners'];
-    if (attachedListeners == true) { return; }
-
-    for (let i = 1; i <= window.max_notes; i++) { existingIndexes.push(i.toString()) };
-
-    chrome.storage.sync.get(existingIndexes, function(noteObj) {
-      console.log(idxToNoteMap);
-      for (let idx in idxToNoteMap) {
-        try {
-          console.log(idx);
-          let parsedNoteObj = JSON.parse(noteObj[idx]);
-          let note = new NoteClass(idxToNoteMap[idx], parsedNoteObj, idx, parsedNoteObj['isMemo']);
-          console.log("binding on load, listeners for this note: " + idx);
-          bindNoteEvents(note);
-        }
-        catch (err) {
-          console.log(err);
-          continue;
-        }
-      }
-      console.log("Adding listeners...");
-      storeSync('haveListeners',true);
-      attachedListeners = true;
-    });
-  
-  /*
-  chrome.browserAction.onClicked.addListener(function() {
-    chrome.tabs.create({'url':"chrome://newtab"});
-  });
-  */
-  });
-}
