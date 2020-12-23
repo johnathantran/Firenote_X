@@ -2,7 +2,7 @@
 "manifest_version": 2,
 "name": "Firenote: Update Testing Version",
 "description": "Create, edit, and save notes and todo lists every time you open a new tab.",
-"version": "3.0",
+"version": "3.0.1",
 
 "chrome_url_overrides" : {
     "newtab": "firenote.html"
@@ -20,7 +20,7 @@
 
 "background": {
   "persistent": false,
-  "page": "src/background.html"
+  "page": "src/js/background.js"
 
 },
 

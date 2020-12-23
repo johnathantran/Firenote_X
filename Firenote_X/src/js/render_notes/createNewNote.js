@@ -5,10 +5,10 @@ export function createNewNote(note) {
 
     var idx = note.idx;
     var note_header = "Note " + idx;
-  
+
     // spawn note in center of screen
-    note.note.style.top = ($(window).scrollTop() + $(window).height() / 2) + "px";
-    note.note.style.left = ($(window).scrollTop() + $(window).width() / 2) - (note.note.offsetWidth / 2) + "px";
+    note.note.style.top = (window.scrollY + window.innerHeight / 2) + "px";
+    note.note.style.left = (window.scrollY + window.innerWidth / 2) - (note.note.offsetWidth / 2) + "px";
   
     // create new note in local storage as empty list
     var dict = {
